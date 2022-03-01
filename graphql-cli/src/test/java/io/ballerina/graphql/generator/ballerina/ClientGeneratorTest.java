@@ -45,36 +45,36 @@ import java.util.List;
  */
 public class ClientGeneratorTest extends GraphqlTest {
 
-    @Test(description = "Test the functionality of the GraphQL client code generator")
-    public void testGenerateSrc() throws CmdException, IOException, ParseException, ValidationException {
-        try {
-            List<GraphqlProject> projects = TestUtils.getValidatedMockProjects(
-                    this.resourceDir.resolve(Paths.get("specs", "graphql.config.yaml")).toString(),
-                    this.tmpDir);
+//     @Test(description = "Test the functionality of the GraphQL client code generator")
+//     public void testGenerateSrc() throws CmdException, IOException, ParseException, ValidationException {
+//         try {
+//             List<GraphqlProject> projects = TestUtils.getValidatedMockProjects(
+//                     this.resourceDir.resolve(Paths.get("specs", "graphql.config.yaml")).toString(),
+//                     this.tmpDir);
 
-            Extension extensions = projects.get(0).getExtensions();
-            List<String> documents = projects.get(0).getDocuments();
-            GraphQLSchema schema = projects.get(0).getGraphQLSchema();
+//             Extension extensions = projects.get(0).getExtensions();
+//             List<String> documents = projects.get(0).getDocuments();
+//             GraphQLSchema schema = projects.get(0).getGraphQLSchema();
 
-            AuthConfig authConfig = new AuthConfig();
-            AuthConfigGenerator.getInstance().populateAuthConfigTypes(extensions, authConfig);
-            AuthConfigGenerator.getInstance().populateApiHeaders(extensions, authConfig);
+//             AuthConfig authConfig = new AuthConfig();
+//             AuthConfigGenerator.getInstance().populateAuthConfigTypes(extensions, authConfig);
+//             AuthConfigGenerator.getInstance().populateApiHeaders(extensions, authConfig);
 
-            Document queryDocument = Utils.getGraphQLQueryDocument(documents.get(0));
-            String queryDocumentName = CodeGeneratorUtils.getDocumentName(new File(documents.get(0)));
+//             Document queryDocument = Utils.getGraphQLQueryDocument(documents.get(0));
+//             String queryDocumentName = CodeGeneratorUtils.getDocumentName(new File(documents.get(0)));
 
-            String generatedClientContent = ClientGenerator.getInstance().
-                    generateSrc(queryDocument, queryDocumentName, schema, authConfig)
-                    .trim().replaceAll("\\s+", "").replaceAll(System.lineSeparator(), "");
+//             String generatedClientContent = ClientGenerator.getInstance().
+//                     generateSrc(queryDocument, queryDocumentName, schema, authConfig)
+//                     .trim().replaceAll("\\s+", "").replaceAll(System.lineSeparator(), "");
 
-            Path expectedClientFile =
-                    resourceDir.resolve(Paths.get("expectedGenCode", "country_queries_client.bal"));
-            String expectedClientContent = readContent(expectedClientFile);
+//             Path expectedClientFile =
+//                     resourceDir.resolve(Paths.get("expectedGenCode", "country_queries_client.bal"));
+//             String expectedClientContent = readContent(expectedClientFile);
 
-            Assert.assertEquals(expectedClientContent, generatedClientContent);
+//             Assert.assertEquals(expectedClientContent, generatedClientContent);
 
-        } catch (ClientGenerationException e) {
-            Assert.fail("Error while generating the client code. " + e.getMessage());
-        }
-    }
+//         } catch (ClientGenerationException e) {
+//             Assert.fail("Error while generating the client code. " + e.getMessage());
+//         }
+//     }
 }

@@ -49,6 +49,14 @@ test {
     finalizedBy jacocoTestReport
 }
 
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = file("$rootProject.projectDir/build/reports/jacoco")
+}
+
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = true
+    }
 }

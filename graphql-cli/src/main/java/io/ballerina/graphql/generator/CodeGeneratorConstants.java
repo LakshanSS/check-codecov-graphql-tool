@@ -28,6 +28,7 @@ import java.util.List;
 public class CodeGeneratorConstants {
 
     public static final String ROOT_PROJECT_NAME = "root";
+    public static final String LAKI = "laki";
     public static final String MODULES_PATH = "/modules/";
     public static final String CLIENT_FILE_NAME = "client.bal";
     public static final String TYPES_FILE_NAME = "types.bal";
